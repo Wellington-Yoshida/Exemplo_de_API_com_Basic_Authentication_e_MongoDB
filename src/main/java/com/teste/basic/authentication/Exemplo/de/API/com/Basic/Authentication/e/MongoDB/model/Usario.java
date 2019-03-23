@@ -15,6 +15,12 @@ public class Usario implements UserDetails {
     private String email;
     private String senha;
 
+    private Usario(Builder builder) {
+        this.id = builder.id;
+        this.email = builder.email;
+        this.senha = builder.senha;
+    }
+
     public String getId() {
         return id;
     }
@@ -72,5 +78,30 @@ public class Usario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public static class Builder {
+        private String id;
+        private String email;
+        private String senha;
+
+        public Builder setId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder setSenha(String senha) {
+            this.senha = senha;
+            return this;
+        }
+
+        public Usario newInstance() {
+            return new Usario(this);
+        }
     }
 }
